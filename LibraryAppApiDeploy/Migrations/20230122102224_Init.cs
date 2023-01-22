@@ -4,10 +4,12 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace LibraryAPI.Migrations
+namespace LibraryAppApiDeploy.Migrations
 {
+    /// <inheritdoc />
     public partial class Init : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -101,7 +103,7 @@ namespace LibraryAPI.Migrations
                     DbTables = table.Column<string>(type: "character varying(25)", maxLength: 25, nullable: false),
                     TableRowId = table.Column<string>(type: "text", nullable: false),
                     Operation = table.Column<int>(type: "integer", nullable: false),
-                    Time = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2022, 10, 24, 10, 5, 12, 757, DateTimeKind.Utc).AddTicks(4677)),
+                    Time = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2023, 1, 22, 10, 22, 24, 701, DateTimeKind.Utc).AddTicks(1166)),
                     IP = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
                     Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false)
                 },
@@ -122,11 +124,11 @@ namespace LibraryAPI.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
                     IP = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
                     SecurityOperation = table.Column<int>(type: "integer", nullable: false),
                     Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false),
-                    LogTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2022, 10, 24, 10, 5, 12, 757, DateTimeKind.Utc).AddTicks(6120)),
+                    LogTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2023, 1, 22, 10, 22, 24, 701, DateTimeKind.Utc).AddTicks(5076)),
                     OperatorUserId = table.Column<Guid>(type: "uuid", nullable: true),
                     OperatorUserUsername = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: true),
                     OperatorUserRole = table.Column<string>(type: "text", nullable: false)
@@ -143,8 +145,7 @@ namespace LibraryAPI.Migrations
                         name: "FK_SecurityAudit_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -176,7 +177,7 @@ namespace LibraryAPI.Migrations
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     BookId = table.Column<int>(type: "integer", nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2022, 10, 24, 10, 5, 12, 757, DateTimeKind.Utc).AddTicks(7847)),
+                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2023, 1, 22, 10, 22, 24, 701, DateTimeKind.Utc).AddTicks(8657)),
                     EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -206,7 +207,7 @@ namespace LibraryAPI.Migrations
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     IP = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
                     ExpiredDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2022, 10, 24, 10, 5, 12, 757, DateTimeKind.Utc).AddTicks(8907))
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValue: new DateTime(2023, 1, 22, 10, 22, 24, 702, DateTimeKind.Utc).AddTicks(1637))
                 },
                 constraints: table =>
                 {
@@ -279,6 +280,7 @@ namespace LibraryAPI.Migrations
                 column: "UserId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

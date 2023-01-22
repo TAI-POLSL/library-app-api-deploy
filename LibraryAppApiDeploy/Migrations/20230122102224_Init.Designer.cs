@@ -9,17 +9,18 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace LibraryAPI.Migrations
+namespace LibraryAppApiDeploy.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221024100512_Init")]
+    [Migration("20230122102224_Init")]
     partial class Init
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -63,7 +64,7 @@ namespace LibraryAPI.Migrations
                     b.Property<DateTime>("Time")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2022, 10, 24, 10, 5, 12, 757, DateTimeKind.Utc).AddTicks(4677))
+                        .HasDefaultValue(new DateTime(2023, 1, 22, 10, 22, 24, 701, DateTimeKind.Utc).AddTicks(1166))
                         .HasColumnName("Time");
 
                     b.Property<Guid>("UserId")
@@ -238,7 +239,7 @@ namespace LibraryAPI.Migrations
                     b.Property<DateTime>("LogTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2022, 10, 24, 10, 5, 12, 757, DateTimeKind.Utc).AddTicks(6120))
+                        .HasDefaultValue(new DateTime(2023, 1, 22, 10, 22, 24, 701, DateTimeKind.Utc).AddTicks(5076))
                         .HasColumnName("LogTime");
 
                     b.Property<Guid?>("OperatorUserId")
@@ -259,7 +260,7 @@ namespace LibraryAPI.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("SecurityOperation");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uuid")
                         .HasColumnName("UserId");
 
@@ -377,7 +378,7 @@ namespace LibraryAPI.Migrations
                     b.Property<DateTime>("StartDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2022, 10, 24, 10, 5, 12, 757, DateTimeKind.Utc).AddTicks(7847))
+                        .HasDefaultValue(new DateTime(2023, 1, 22, 10, 22, 24, 701, DateTimeKind.Utc).AddTicks(8657))
                         .HasColumnName("StartDate");
 
                     b.Property<int>("Status")
@@ -409,7 +410,7 @@ namespace LibraryAPI.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTime(2022, 10, 24, 10, 5, 12, 757, DateTimeKind.Utc).AddTicks(8907))
+                        .HasDefaultValue(new DateTime(2023, 1, 22, 10, 22, 24, 702, DateTimeKind.Utc).AddTicks(1637))
                         .HasColumnName("CreatedDate");
 
                     b.Property<DateTime?>("ExpiredDate")
@@ -468,9 +469,7 @@ namespace LibraryAPI.Migrations
 
                     b.HasOne("LibraryAPI.Models.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("OperatorUser");
 

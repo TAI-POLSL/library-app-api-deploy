@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Functions\" />
     <Folder Include="Mappers\" />
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
