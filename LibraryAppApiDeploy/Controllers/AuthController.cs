@@ -31,6 +31,22 @@ namespace LibraryAPI.Controllers
             return Ok(code);
         }
 
+        [HttpHead("session")]
+        public async Task<ActionResult> Session()
+        {
+            try
+            {
+                if (HttpContext!.User!.Identity!.IsAuthenticated)
+                    return Ok();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return NoContent();
+            }
+        }
+
         [HttpDelete("logout")]
         [Authorize]
         public async Task<ActionResult> Logout()
