@@ -56,7 +56,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
             options.Cookie.HttpOnly = true;
             options.Cookie.Name = "SESSION";
             options.Cookie.IsEssential = true;
-            //options.EventsType = typeof(CustomCookieAuthenticationEvents);
+            options.EventsType = typeof(CustomCookieAuthenticationEvents);
             options.Events.OnRedirectToLogin = context =>
             {
                 context.Response.Headers["Location"] = context.RedirectUri;
