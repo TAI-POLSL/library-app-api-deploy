@@ -54,6 +54,7 @@ namespace LibraryAPI.Services
                     x.User.Username,
                     x.IP,
                     x.LogTime,
+                    x.SecurityOperation,
                     x.Description,
                     x.OperatorUserRole,
                     x.OperatorUserUsername
